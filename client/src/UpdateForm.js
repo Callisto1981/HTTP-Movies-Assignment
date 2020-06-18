@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 export const UpdateForm = () => {
   const [movieEdit, setMovieEdit] = useState({
@@ -8,6 +9,8 @@ export const UpdateForm = () => {
     metascore: "",
     stars: []
   });
+
+  useEffect(() => {});
   handleChange = () => {};
   return (
     <>
