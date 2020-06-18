@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export const UpdateForm = () => {
-  const [movieEdit, setMovieEdit] = useState({
-    id: "",
-    title: "",
-    director: "",
-    metascore: "",
-    stars: []
-  });
+const initialState = {
+  id: "",
+  title: "",
+  director: "",
+  metascore: "",
+  stars: []
+};
+
+export const UpdateForm = props => {
+  //use route match
+
+  const { push } = useHistory();
+  const { id } = useParams();
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/movies$props.match.params.id`)
+      .get(`http://localhost:5000/api/movies/${id}`)
       .then(res => {
         //console.log(res.data)
         setMovieEdit(res.data);
-      });
-  }, [props.match.params.id]);
+      })
+      .catch(err => console.log(err));
+  }, [id]);
 
   handleChange = e => {
     setMovieEdit({ ...movieEdit, [e.target.name]: e.target.value });
