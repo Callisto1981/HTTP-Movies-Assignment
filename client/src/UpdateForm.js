@@ -9,9 +9,9 @@ const initialState = {
   stars: []
 };
 
-export const UpdateForm = props => {
+export const UpdateForm = () => {
   //use route match
-
+  const [movie, setMovie] = useState(initialState);
   const { push } = useHistory();
   const { id } = useParams();
 
@@ -25,8 +25,8 @@ export const UpdateForm = props => {
       .catch(err => console.log(err));
   }, [id]);
 
-  handleChange = e => {
-    setMovieEdit({ ...movieEdit, [e.target.name]: e.target.value });
+  const handleChange = e => {
+    setMovie({ ...movie, [e.target.name]: e.target.value });
   };
 
   handleSumbit = e => {
